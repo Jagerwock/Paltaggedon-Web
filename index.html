@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paltaggedon | 2D Rubber Hose Survivor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Croissant+One&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="film-grain" aria-hidden="true"></div>
+  <header>
+    <nav class="nav">
+      <div class="logo" id="logo">Paltaggedon</div>
+      <ul>
+        <li><a href="#about">Sobre</a></li>
+        <li><a href="#enemies">Enemigos</a></li>
+        <li><a href="#features">Gameplay</a></li>
+        <li><a href="#community">Comunidad</a></li>
+      </ul>
+      <a class="btn" href="#community">Wishlist</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <div class="badge">🎷 Jazz survivor • Top-down shooter • Rubber hose</div>
+        <h1 class="logo" aria-label="Paltaggedon">Paltaggedon</h1>
+        <p class="hero-tagline">Un 2D top-down shooter survivor ambientado en un Apocalipsis vegetal de los años 20. Deslízate entre ráfagas, baila swing entre las balas y derrota a una orquesta de verduras villanas en una estética rubber-hose digna de los viejos proyectores.</p>
+        <div class="cta-row">
+          <button class="btn" id="playTrailer">Play Trailer</button>
+          <button class="btn" style="background: var(--avocado);">Wishlist Now</button>
+        </div>
+      </div>
+      <div class="hero-art" id="parallaxHero">
+        <div class="floating-orbs">
+          <div class="orb one"></div>
+          <div class="orb two"></div>
+          <div class="orb three"></div>
+        </div>
+        <div class="card hero-card">
+          <div class="hero-card-content">
+            <div class="tag">🎞️ Film Grain Mood</div>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGg4Njc2MzU2c21objZoZTBpY2wyYWVlbWg0MWc1ajZ2ZnB2bW9ueiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vybWQqbxLIsQ0/giphy.gif" alt="Hero sprite" class="hero-sprite">
+            <p>Animaciones de squash & stretch, grano de película y un swing que no se detiene. Prepárate para oleadas de Tomatellos, Limoñones y uvas con ritmo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <h2>Sobre el Apocalipsis de la Palta</h2>
+      <p class="reveal">En Paltaggedon, el mundo vegetal tomó vida bajo el beat del jazz. Las calles art déco están inundadas de semillas brillantes, proyectores chispeantes y carteles de neón vintage. Tú eres la última palta con swing suficiente para sobrevivir.</p>
+      <div class="about-grid">
+        <div class="card reveal">
+          <h3>Oleadas rítmicas</h3>
+          <p>Enemigos que atacan al compás del swing. Aprovecha el ritmo para esquivar, disparar y encadenar combos estilizados.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Builds al vuelo</h3>
+          <p>Elige mejoras en medio del caos: proyectiles rebotantes, dash de tinta, drones trompetistas o bombas de semillas.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Arte rubber hose</h3>
+          <p>Animaciones inspiradas en los años 20: brazos elásticos, ojos grandes y texturas de papel envejecido con grano constante.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="enemies">
+      <h2>Conoce a los Enemigos</h2>
+      <p class="reveal">Cada villano vegetal tiene personalidad propia y ataques musicales. Haz clic para ver sus habilidades y sprites animados.</p>
+      <div class="enemy-grid">
+        <div class="enemy-card" data-name="Tomatello" data-desc="Un crooner ácido que lanza ráfagas de salsa en arco." data-sprite="https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif" data-ability="Ráfaga de salsa, dash pegajoso y coraza de semillas.">
+          <span class="tag">Tomatello</span>
+          <img src="https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif" alt="Tomatello sprite">
+          <p>El tenor rojo que ama los reflectores.</p>
+        </div>
+        <div class="enemy-card" data-name="Limoñón" data-desc="Trompetista ácido con notas agudas que generan zonas lentas." data-sprite="https://media.giphy.com/media/12NUbkX6p4xOO4/giphy.gif" data-ability="Notas cítricas, nube de acidez y bloqueo de dashes.">
+          <span class="tag">Limoñón</span>
+          <img src="https://media.giphy.com/media/12NUbkX6p4xOO4/giphy.gif" alt="Limoñón sprite">
+          <p>Sopla trompeta y congela el ritmo.</p>
+        </div>
+        <div class="enemy-card" data-name="UvaRumba" data-desc="Corista morada que invoca mini-uvas en coreografía." data-sprite="https://media.giphy.com/media/3o7ZeCiO1CqJ3S9aWw/giphy.gif" data-ability="Multiplicación rítmica, barrera burbujeante y salto síncopa.">
+          <span class="tag">UvaRumba</span>
+          <img src="https://media.giphy.com/media/3o7ZeCiO1CqJ3S9aWw/giphy.gif" alt="UvaRumba sprite">
+          <p>Una banda completa dentro de un racimo.</p>
+        </div>
+        <div class="enemy-card" data-name="ChocloPop" data-desc="Percusionista que dispara granos como metralla." data-sprite="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif" data-ability="Cadencia de metrónomo, explosiones de palomitas y escudo de hojas.">
+          <span class="tag">ChocloPop</span>
+          <img src="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif" alt="ChocloPop sprite">
+          <p>El beat más crujiente del maizal.</p>
+        </div>
+        <div class="enemy-card" data-name="Megapaya" data-desc="Jefe final, una papaya colosal con láseres tropicales." data-sprite="https://media.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif" data-ability="Rayo tropical, pisotón sincopado y muralla de jugo pegajoso.">
+          <span class="tag">Megapaya</span>
+          <img src="https://media.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif" alt="Megapaya sprite">
+          <p>El show final de la noche.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <h2>Features & Gameplay</h2>
+      <p class="reveal">Una mezcla de supervivencia, builds dinámicos y balística con swing. Cada partida se siente como una improvisación de jazz.</p>
+      <div class="features-grid">
+        <div class="feature reveal"><div class="feature-icon">🎺</div><div><h4>Power-Ups Swing</h4><p>Ritmo que potencia disparos, dashes y drones musicales.</p></div></div>
+        <div class="feature reveal"><div class="feature-icon">🧪</div><div><h4>Mejoras Locas</h4><p>Combina tinta elástica, rebotes de salsa y escudos de piel de palta.</p></div></div>
+        <div class="feature reveal"><div class="feature-icon">🌊</div><div><h4>Oleadas Progresivas</h4><p>Más intensidad, más jazz, más enemigos danzando al compás.</p></div></div>
+        <div class="feature reveal"><div class="feature-icon">🎯</div><div><h4>Control Preciso</h4><p>Top-down shooter ágil con micro-animaciones responsivas.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="community">
+      <h2>Únete a la Comunidad</h2>
+      <p class="reveal">Sé parte de la big band: comparte feedback, wishlist y mantente al tanto de los devlogs con arte vintage.</p>
+      <div class="community-links">
+        <a class="link-pill" href="https://discord.com" target="_blank">💬 Discord</a>
+        <a class="link-pill" href="https://twitter.com" target="_blank">🐦 Twitter / X</a>
+        <a class="link-pill" href="https://store.steampowered.com" target="_blank">🎮 Steam Wishlist</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2024 Paltaggedon — Jazz, balas y verduras con estilo rubber hose.
+  </footer>
+
+  <div class="modal-backdrop" id="modal">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="modal-close" aria-label="Cerrar">✕</button>
+      <h3 id="modalTitle">Villano</h3>
+      <p id="modalDesc" class="modal-desc"></p>
+      <img id="modalSprite" alt="Sprite enemigo" />
+      <p id="modalAbility" class="modal-ability"></p>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
