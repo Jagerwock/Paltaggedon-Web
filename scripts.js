@@ -81,28 +81,80 @@ const closeBackdrop = (backdrop) => {
   backdrop.parentNode.replaceChild(clone, backdrop);
 };
 
-const enemyModal = qs('#enemyModal');
-const modalTitle = qs('#modalTitle', enemyModal);
-const modalDesc = qs('#modalDesc', enemyModal);
-const modalSprite = qs('#modalSprite', enemyModal);
-const modalAbility = qs('#modalAbility', enemyModal);
+const enemyModal = document.getElementById('enemyModal');
+const codexTitle = document.getElementById('codexTitle');
+const codexScientific = document.getElementById('codexScientific');
+const codexSummary = document.getElementById('codexSummary');
+const codexAbility = document.getElementById('codexAbility');
+const codexTraits = document.getElementById('codexTraits');
+const codexSprite = document.getElementById('codexSprite');
+const codexVariantLabel = document.getElementById('codexVariantLabel');
 
-qsa('.enemy-card').forEach(card => {
-  card.addEventListener('click', () => {
-    modalTitle.textContent = card.dataset.name || 'Enemigo';
-    modalDesc.textContent = card.dataset.desc || '';
-    modalSprite.src = card.dataset.sprite || '';
-    modalSprite.alt = `Sprite de ${card.dataset.name || 'enemigo'}`;
-    modalAbility.textContent = card.dataset.ability || '';
-    openBackdrop(enemyModal);
+const variantButtons = Array.from(document.querySelectorAll('.variant-btn'));
+const btnPrev = document.querySelector('.codex-prev');
+const btnNext = document.querySelector('.codex-next');
+
+const enemyCards = Array.from(document.querySelectorAll('.enemy-card'));
+const ORDER = enemyCards.map(el => el.dataset.id);
+let currentIndex = 0;
+let currentVariant = 'base';
+
+function populateCodex(id){
+  const data = CODEX[id];
+  if(!data) return;
+
+  const v = data.variants[currentVariant] || data.variants.base;
+
+  codexTitle.textContent = data.common;
+  codexScientific.textContent = data.scientific;
+  codexSummary.textContent = v.summary;
+  codexAbility.textContent = v.ability;
+
+  codexTraits.innerHTML = '';
+  (v.traits || []).forEach(t => {
+    const li = document.createElement('li');
+    li.textContent = t;
+    codexTraits.appendChild(li);
+  });
+
+  codexSprite.src = v.sprite;
+  codexSprite.alt = `Sprite de ${data.common} (${v.label})`;
+  codexVariantLabel.textContent = v.label;
+
+  variantButtons.forEach(b => b.setAttribute('aria-selected', String(b.dataset.variant === currentVariant)));
+}
+
+function openCodexAt(index){
+  currentIndex = (index + ORDER.length) % ORDER.length;
+  currentVariant = 'base';
+  populateCodex(ORDER[currentIndex]);
+  openBackdrop(enemyModal);
+}
+
+function nextEnemy(){
+  openCodexAt(currentIndex + 1);
+}
+function prevEnemy(){
+  openCodexAt(currentIndex - 1);
+}
+
+enemyCards.forEach((card, i) => {
+  card.addEventListener('click', () => openCodexAt(i));
+});
+
+variantButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentVariant = btn.dataset.variant;
+    populateCodex(ORDER[currentIndex]);
   });
 });
 
-document.addEventListener('click', (e) => {
-  const btn = e.target.closest('[data-close-modal]');
-  if (!btn) return;
-  const backdrop = btn.closest('.modal-backdrop');
-  closeBackdrop(backdrop);
+btnNext.addEventListener('click', nextEnemy);
+btnPrev.addEventListener('click', prevEnemy);
+
+enemyModal.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') { e.preventDefault(); nextEnemy(); }
+  if (e.key === 'ArrowLeft')  { e.preventDefault(); prevEnemy(); }
 });
 
 const trailerBtn = qs('#playTrailer');
@@ -135,3 +187,141 @@ trailerBtn?.addEventListener('click', mkPulse);
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Tab') document.body.classList.add('user-is-tabbing');
 });
+
+const CODEX = {
+  tomatello: {
+    common: "Tomatello",
+    scientific: "Solanum croonerii",
+    variants: {
+      base: {
+        summary: "Hola que tal.",
+        ability: "Hola que tal.",
+        traits: ["Camina"],
+        sprite: "assets/tomatello.gif",
+        label: "Base"
+      },
+      elite: {
+        summary: "Hola que tal.",
+        ability: "Hola que tal.",
+        traits: ["Camina"],
+        sprite: "assets/tomatello_elite.gif",
+        label: "Élite"
+      },
+      legendary: {
+        summary: "Hola que tal.",
+        ability: "Hola que tal.",
+        traits: ["Camina"],
+        sprite: "assets/tomatello_legend.gif",
+        label: "Legendario"
+      }
+    }
+  },
+  limonion: {
+    common: "Limoñón",
+    scientific: "Citrus brassii",
+    variants: {
+      base: {
+        summary: "Hola que tal.",
+        ability: "Hola que tal.",
+        traits: ["Camina"],
+        sprite: "assets/limonion.gif",
+        label: "Base"
+      },
+      elite: {
+        summary: "Hola que tal.",
+        ability: "Hola que tal.",
+        traits: ["Camina"],
+        sprite: "assets/limonion_elite.gif",
+        label: "Élite"
+      },
+      legendary: {
+        summary: "Hola que tal.",
+        ability: "Hola que tal.",
+        traits: ["Camina"],
+        sprite: "assets/limonion_legend.gif",
+        label: "Legendario"
+      }
+    }
+  },
+  uvarumba: {
+    common: "UvaRumba",
+    scientific: "Vitis choreae",
+    variants: {
+      base: {
+        summary: "Hola que tal.",
+        ability: "Hola que tal.",
+        traits: ["Camina"],
+        sprite: "assets/uvarumba.gif",
+        label: "Base"
+      },
+      elite: {
+        summary: "Hola que tal.",
+        ability: "Hola que tal.",
+        traits: ["Camina"],
+        sprite: "assets/uvarumba_elite.gif",
+        label: "Élite"
+      },
+      legendary: {
+        summary: "Hola que tal.",
+        ability: "Hola que tal.",
+        traits: ["Camina"],
+        sprite: "assets/uvarumba_legend.gif",
+        label: "Legendario"
+      }
+    }
+  },
+  choclopop: {
+    common: "ChocloPop",
+    scientific: "Zea percussio",
+    variants: {
+      base: {
+        summary: "Hola que tal.",
+        ability: "Hola que tal.",
+        traits: ["Camina"],
+        sprite: "assets/choclopop.gif",
+        label: "Base"
+      },
+      elite: {
+        summary: "Hola que tal.",
+        ability: "Hola que tal.",
+        traits: ["Camina"],
+        sprite: "assets/choclopop_elite.gif",
+        label: "Élite"
+      },
+      legendary: {
+        summary: "Hola que tal.",
+        ability: "Hola que tal.",
+        traits: ["Camina"],
+        sprite: "assets/choclopop_legend.gif",
+        label: "Legendario"
+      }
+    }
+  },
+  megapaya: {
+    common: "Megapaya",
+    scientific: "Carica colossi",
+    variants: {
+      base: {
+        summary: "Hola que tal.",
+        ability: "Hola que tal.",
+        traits: ["Camina"],
+        sprite: "assets/megapaya.gif",
+        label: "Base"
+      },
+      elite: {
+        summary: "Hola que tal.",
+        ability: "Hola que tal.",
+        traits: ["Camina"],
+        sprite: "assets/megapaya_elite.gif",
+        label: "Élite"
+      },
+      legendary: {
+        summary: "Hola que tal.",
+        ability: "Hola que tal.",
+        traits: ["Camina"],
+        sprite: "assets/megapaya_legend.gif",
+        label: "Legendario"
+      }
+    }
+  }
+};
