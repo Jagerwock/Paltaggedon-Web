@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Paltaggedon</title>
+
+  <meta name="description" content="Paltaggedon: shooter survivor top-down con estética rubber-hose de los años 20. Jazz, balas y verduras villanas." />
+  <meta property="og:title" content="Paltaggedon | 2D Rubber Hose Survivor" />
+  <meta property="og:description" content="Jazz, balas y verduras villanas en un apocalipsis vintage." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og-cover.jpg" />
+  <link rel="icon" href="assets/favicon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Croissant+One&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="scripts.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <div class="film-grain" aria-hidden="true"></div>
+
+  <header class="site-header" data-scrolled="false">
+    <nav class="nav" aria-label="Principal">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="sr-only">Abrir menú</span>
+      </button>
+
+      <a class="brand" href="#hero" id="logo" aria-label="Paltaggedon">
+        <span class="brand-word">Paltaggedon</span>
+      </a>
+
+      <ul class="menu" id="menu">
+        <li><a href="#about">Sobre</a></li>
+        <li><a href="#enemies">Enemigos</a></li>
+        <li><a href="#features">Gameplay</a></li>
+        <li><a href="#community">Comunidad</a></li>
+      </ul>
+
+      <a class="btn btn-cta" href="#community">Wishlist</a>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero" id="hero" aria-labelledby="title-hero">
+      <div class="hero-content">
+        <p class="badge">Top-down shooter • Rubber-hose</p>
+        <h1 id="title-hero" class="logo">Paltaggedon</h1>
+        <p class="hero-tagline">
+          Un 2D top-down shooter survivor en un apocalipsis vegetal de los años 20 estilo Rubber Hose.
+        </p>
+        <div class="cta-row">
+          <button class="btn" id="playTrailer" aria-haspopup="dialog">Ver Trailer</button>
+          <a class="btn btn-avocado" href="#community">Wishlist Now</a>
+        </div>
+      </div>
+
+      <div class="hero-art" id="parallaxHero" aria-hidden="true">
+        <div class="floating-orbs">
+          <span class="orb one"></span>
+          <span class="orb two"></span>
+          <span class="orb three"></span>
+        </div>
+
+        <article class="card hero-card">
+          <div class="hero-card-content">
+            <span class="tag">🎞️ Film Mood</span>
+            <img
+              src="assets/hero-sprite.gif"
+              alt="Sprite protagonista estilo rubber-hose"
+              class="hero-sprite"
+              loading="lazy"
+            />
+            <p>Video sexo del juego</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <h2 id="about-title">Sobre el Apocalipsis de la Palta</h2>
+      <p class="reveal">
+        No se que poner.
+      </p>
+
+      <div class="about-grid">
+        <article class="card reveal">
+          <h3>Oleadas rítmicas</h3>
+          <p>Enemigos que te tocan.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Builds al vuelo</h3>
+          <p>Elige mejoras.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Arte rubber-hose</h3>
+          <p>Brazos elásticos y hola.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="enemies" aria-labelledby="enemies-title">
+      <h2 id="enemies-title">Conoce a los Enemigos</h2>
+      <p class="reveal">Cada villano vegetal tiene personalidad.</p>
+
+      <div class="enemy-grid" role="list">
+        <button class="enemy-card"
+          role="listitem"
+          data-name="Tomatello"
+          data-desc="Tomate gordo."
+          data-sprite="assets/tomatello.gif"
+          data-ability="Golpea y ya :v."
+          aria-haspopup="dialog"
+        >
+          <span class="tag">Tomatello</span>
+          <img src="assets/tomatello.gif" alt="" loading="lazy" />
+          <p>hola lorem ipsum.</p>
+        </button>
+
+        <button class="enemy-card"
+          role="listitem"
+          data-name="Limoñón"
+          data-desc="Dispara balas acidas rikolinas pe."
+          data-sprite="assets/limonion.gif"
+          data-ability="Te golpea duro acido."
+          aria-haspopup="dialog"
+        >
+          <span class="tag">Limoñón</span>
+          <img src="assets/limonion.gif" alt="" loading="lazy" />
+          <p>hola lorem ipsum.</p>
+        </button>
+
+        <button class="enemy-card"
+          role="listitem"
+          data-name="UvaRumba"
+          data-desc="Flaquita."
+          data-sprite="assets/uvarumba.gif"
+          data-ability="Te da hijos gratis."
+          aria-haspopup="dialog"
+        >
+          <span class="tag">UvaRumba</span>
+          <img src="assets/uvarumba.gif" alt="" loading="lazy" />
+          <p>hola lorem ipsum.</p>
+        </button>
+
+        <button class="enemy-card"
+          role="listitem"
+          data-name="ChocloPop"
+          data-desc="Metralleta de 4 balas."
+          data-sprite="assets/choclopop.gif"
+          data-ability="Estilo vaquero."
+          aria-haspopup="dialog"
+        >
+          <span class="tag">ChocloPop</span>
+          <img src="assets/choclopop.gif" alt="" loading="lazy" />
+          <p>hola lorem ipsum.</p>
+        </button>
+
+        <button class="enemy-card"
+          role="listitem"
+          data-name="Megapaya"
+          data-desc="Gym bro."
+          data-sprite="assets/megapaya.gif"
+          data-ability="Musculoso ay papi."
+          aria-haspopup="dialog"
+        >
+          <span class="tag">Megapaya</span>
+          <img src="assets/megapaya.gif" alt="" loading="lazy" />
+          <p>hola lorem ipsum.</p>
+        </button>
+      </div>
+    </section>
+
+    <section class="section" id="features" aria-labelledby="features-title">
+      <h2 id="features-title">Features & Gameplay</h2>
+      <p class="reveal">Supervivencia pe</p>
+
+      <div class="features-grid">
+        <div class="feature reveal"><div class="feature-icon" aria-hidden="true">🎺</div><div><h4>Power-Ups Swing</h4><p>Ritmo que potencia disparos.</p></div></div>
+        <div class="feature reveal"><div class="feature-icon" aria-hidden="true">🧪</div><div><h4>Mejoras Locas</h4><p>Hola que tal.</p></div></div>
+        <div class="feature reveal"><div class="feature-icon" aria-hidden="true">🌊</div><div><h4>Oleadas Progresivas</h4><p>Más intensidad, más enemigos.</p></div></div>
+        <div class="feature reveal"><div class="feature-icon" aria-hidden="true">🎯</div><div><h4>Control Preciso</h4><p>Top-down ágil con micro-animaciones responsivas.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="community" aria-labelledby="community-title">
+      <h2 id="community-title">Únete a la Comunidad</h2>
+      <p class="reveal">Sé parte de nuestro server con moderadores</p>
+
+      <div class="community-links">
+        <a class="link-pill" href="https://discord.com" target="_blank" rel="noopener">💬 Discord</a>
+        <a class="link-pill" href="https://twitter.com" target="_blank" rel="noopener">Bemito Gaming</a>
+        <a class="link-pill" href="https://store.steampowered.com" target="_blank" rel="noopener">🎮 Amo a mi novia</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    © 2025 Paltaggedon - Bemito Gaming.
+  </footer>
+
+  <div class="modal-backdrop" id="enemyModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+      <button class="modal-close" data-close-modal aria-label="Cerrar">✕</button>
+      <h3 id="modalTitle">Villano</h3>
+      <p id="modalDesc" class="modal-desc"></p>
+      <img id="modalSprite" alt="Sprite enemigo" />
+      <p id="modalAbility" class="modal-ability"></p>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="trailerModal" aria-hidden="true">
+    <div class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="trailerTitle">
+      <button class="modal-close" data-close-modal aria-label="Cerrar">✕</button>
+      <h3 id="trailerTitle">Trailer</h3>
+      <div class="video-wrap">
+        <iframe id="trailerFrame" title="Trailer de Paltaggedon" loading="lazy"
+          src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts.js" defer></script>
+</body>
+</html>
