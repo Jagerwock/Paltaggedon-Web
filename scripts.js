@@ -325,3 +325,84 @@ const CODEX = {
     }
   }
 };
+
+const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+
+(function initHeroParallax(){
+  const hero = document.querySelector('.hero-parallax');
+  if(!hero) return;
+
+  const layers = [...hero.querySelectorAll('[data-p-speed]')];
+  let mouseX = 0, mouseY = 0, lerpX = 0, lerpY = 0;
+
+  hero.addEventListener('pointermove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    const x = (e.clientX - rect.left)/rect.width - 0.5;
+    const y = (e.clientY - rect.top)/rect.height - 0.5;
+    mouseX = clamp(x, -0.6, 0.6);
+    mouseY = clamp(y, -0.6, 0.6);
+  });
+
+  const onScroll = () => {
+    const top = hero.getBoundingClientRect().top;
+    const vh = window.innerHeight || 1;
+    const progress = clamp(1 - top / vh, 0, 2); // 0..2
+    layers.forEach(l=>{
+      const s = parseFloat(l.dataset.pSpeed || '0.2');
+      l.style.transform = `translate(-50%,-50%) translateY(${progress* s * -40}px)`;
+    });
+  };
+
+  const loop = () => {
+    lerpX += (mouseX - lerpX) * 0.06;
+    lerpY += (mouseY - lerpY) * 0.06;
+    layers.forEach(l=>{
+      const s = parseFloat(l.dataset.pSpeed || '0.2');
+      l.style.transform += ` translate(${lerpX * s * 18}px, ${lerpY * s * 14}px)`;
+    });
+    requestAnimationFrame(loop);
+  };
+
+  onScroll(); window.addEventListener('scroll', onScroll, { passive:true });
+  requestAnimationFrame(loop);
+})();
+
+(function initStickerBelt(){
+  const belt = document.querySelector('[data-belt]');
+  if(!belt) return;
+
+  belt.innerHTML = belt.innerHTML + belt.innerHTML;
+  let x = 0;
+  function tick(){
+    x -= 0.5;
+    belt.style.transform = `translateX(${x}px)`;
+    if (Math.abs(x) > belt.scrollWidth / 2) x = 0;
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+
+(function initCodexStrip(){
+  const track = document.querySelector('[data-parallax-x]');
+  if(!track) return;
+  const onScroll = () => {
+    const r = track.getBoundingClientRect();
+    const vh = window.innerHeight || 1;
+    const vis = clamp(1 - Math.abs((r.top + r.height/2) - vh/2) / (vh/1.2), 0, 1);
+    track.style.transform = `translateX(${(vis - 0.5) * -60}px)`;
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive:true });
+})();
+
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('[data-open-id]');
+  if(!btn) return;
+  const id = btn.getAttribute('data-open-id');
+  const idx = [...document.querySelectorAll('.enemy-card')].findIndex(c => c.dataset.id === id);
+  if (idx >= 0 && typeof openCodexAt === 'function') openCodexAt(idx);
+});
+
+document.getElementById('playTrailer2')?.addEventListener('click', () => {
+  document.getElementById('playTrailer')?.click();
+});

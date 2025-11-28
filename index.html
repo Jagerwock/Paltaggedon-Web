@@ -47,10 +47,18 @@
   </header>
 
   <main id="main" tabindex="-1">
-    <section class="hero" id="hero" aria-labelledby="title-hero">
-      <div class="hero-content">
+    <section class="hero-parallax" aria-label="Hero Parallax">
+      <div class="p-layer p-bg" data-p-speed="0.15"></div>
+
+      <img class="p-layer deco deco-arch" data-p-speed="0.25" src="assets/deco-arch.svg" alt="" aria-hidden="true">
+      <img class="p-layer deco deco-stars" data-p-speed="0.35" src="assets/deco-stars.svg" alt="" aria-hidden="true">
+
+      <img class="p-layer prota" data-p-speed="0.50" src="assets/palti-hero.png"
+          alt="Paltiño posando con trompeta y guantes rubber-hose">
+
+      <div class="p-layer hero-callout" data-p-speed="0.42">
         <p class="badge">Top-down shooter • Rubber-hose</p>
-        <h1 id="title-hero" class="logo">Paltaggedon</h1>
+        <h1 class="hero-line">Paltaggedon</h1>
         <p class="hero-tagline">
           Un 2D top-down shooter survivor en un apocalipsis vegetal de los años 20 estilo Rubber Hose.
         </p>
@@ -59,26 +67,15 @@
           <a class="btn btn-avocado" href="#community">Wishlist Now</a>
         </div>
       </div>
+    </section>
 
-      <div class="hero-art" id="parallaxHero" aria-hidden="true">
-        <div class="floating-orbs">
-          <span class="orb one"></span>
-          <span class="orb two"></span>
-          <span class="orb three"></span>
-        </div>
-
-        <article class="card hero-card">
-          <div class="hero-card-content">
-            <span class="tag">🎞️ Film Mood</span>
-            <img
-              src="assets/hero-sprite.gif"
-              alt="Sprite protagonista estilo rubber-hose"
-              class="hero-sprite"
-              loading="lazy"
-            />
-            <p>Falta agregar trailer</p>
-          </div>
-        </article>
+    <section class="sticker-belt" aria-label="Colección Rubber Hose">
+      <div class="belt-track" data-belt>
+        <img src="assets/sticker-tomatello.png" alt="Sticker Tomatello">
+        <img src="assets/sticker-limonion.png" alt="Sticker Limoñón">
+        <img src="assets/sticker-uvarumba.png" alt="Sticker UvaRumba">
+        <img src="assets/sticker-choclopop.png" alt="Sticker ChocloPop">
+        <img src="assets/sticker-megapaya.png" alt="Sticker Megapaya">
       </div>
     </section>
 
@@ -100,6 +97,45 @@
         <article class="card reveal">
           <h3>Arte rubber-hose</h3>
           <p>Brazos elásticos y hola.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="codex-strip" aria-label="Codex Parallax">
+      <div class="codex-track" data-parallax-x>
+        <article class="codex-card">
+          <img src="assets/tomatello_pose.png" alt="" aria-hidden="true">
+          <h3>Tomatello</h3>
+          <p>Solanum croonerii</p>
+          <button class="btn small" data-open-id="tomatello">Abrir ficha</button>
+        </article>
+
+        <article class="codex-card">
+          <img src="assets/limonion_pose.png" alt="" aria-hidden="true">
+          <h3>Limoñón</h3>
+          <p>Citrus brassii</p>
+          <button class="btn small" data-open-id="limonion">Abrir ficha</button>
+        </article>
+
+        <article class="codex-card">
+          <img src="assets/uvarumba_pose.png" alt="" aria-hidden="true">
+          <h3>UvaRumba</h3>
+          <p>Vitis choreae</p>
+          <button class="btn small" data-open-id="uvarumba">Abrir ficha</button>
+        </article>
+
+        <article class="codex-card">
+          <img src="assets/choclopop_pose.png" alt="" aria-hidden="true">
+          <h3>ChocloPop</h3>
+          <p>Zea percussio</p>
+          <button class="btn small" data-open-id="choclopop">Abrir ficha</button>
+        </article>
+
+        <article class="codex-card">
+          <img src="assets/megapaya_pose.png" alt="" aria-hidden="true">
+          <h3>Megapaya</h3>
+          <p>Carica colossi</p>
+          <button class="btn small" data-open-id="megapaya">Abrir ficha</button>
         </article>
       </div>
     </section>
