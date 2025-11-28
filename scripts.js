@@ -17,14 +17,6 @@ if (navToggle && menu) {
   });
 }
 
-const parallaxHero = qs('#parallaxHero');
-const parallax = () => {
-  if (!parallaxHero || prefersReduced) return;
-  const offset = window.scrollY * 0.15;
-  parallaxHero.style.transform = `translateY(${offset}px)`;
-};
-window.addEventListener('scroll', parallax, { passive: true });
-
 const reveals = qsa('.reveal, .card, .feature');
 if ('IntersectionObserver' in window) {
   const io = new IntersectionObserver((entries) => {
@@ -70,15 +62,19 @@ const openBackdrop = (backdrop) => {
   };
   backdrop.dataset.keyHandler = 'true';
   backdrop.addEventListener('keydown', keyHandler);
-  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeBackdrop(backdrop); });
+  backdrop.addEventListener('click', clickHandler);
   first?.focus();
 };
 const closeBackdrop = (backdrop) => {
   if (!backdrop) return;
   backdrop.classList.remove('active');
-  backdrop.setAttribute('aria-hidden', 'true');
-  const clone = backdrop.cloneNode(true);
-  backdrop.parentNode.replaceChild(clone, backdrop);
+  const clickHandler = (e) => { if (e.target === backdrop) closeBackdrop(backdrop); };
+  backdrop.__keyHandler = keyHandler;
+  backdrop.__clickHandler = clickHandler;
+  backdrop.removeEventListener('keydown', backdrop.__keyHandler || (()=>{}));
+  backdrop.removeEventListener('click', backdrop.__clickHandler || (()=>{}));
+  delete backdrop.__keyHandler;
+  delete backdrop.__clickHandler;
 };
 
 const enemyModal = document.getElementById('enemyModal');
@@ -163,7 +159,7 @@ const trailerFrame = qs('#trailerFrame');
 
 if (trailerBtn) {
   trailerBtn.addEventListener('click', () => {
-    const url = '';
+    const url = 'https://www.youtube.com/embed/TpBKYQ2uYhw?autoplay=1&rel=0';
     trailerFrame.src = url;
     openBackdrop(trailerModal);
   });
@@ -171,8 +167,13 @@ if (trailerBtn) {
 
 document.addEventListener('click', (e) => {
   const isClose = e.target.closest('[data-close-modal]');
-  const backdrop = isClose?.closest('#trailerModal');
-  if (backdrop) { trailerFrame.src = ''; }
+  if (!isClose) return;
+  const backdrop = isClose.closest('.modal-backdrop');
+  if (!backdrop) return;
+  closeBackdrop(backdrop);
+  if (backdrop === trailerModal) {
+    trailerFrame.src = '';
+  }
 });
 
 const mkPulse = () => {
@@ -334,6 +335,7 @@ const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
 
   const layers = [...hero.querySelectorAll('[data-p-speed]')];
   let mouseX = 0, mouseY = 0, lerpX = 0, lerpY = 0;
+  let scrollOffset = 0;
 
   hero.addEventListener('pointermove', (e) => {
     const rect = hero.getBoundingClientRect();
@@ -347,10 +349,7 @@ const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
     const top = hero.getBoundingClientRect().top;
     const vh = window.innerHeight || 1;
     const progress = clamp(1 - top / vh, 0, 2); // 0..2
-    layers.forEach(l=>{
-      const s = parseFloat(l.dataset.pSpeed || '0.2');
-      l.style.transform = `translate(-50%,-50%) translateY(${progress* s * -40}px)`;
-    });
+    scrollOffset = progress * -40;
   };
 
   const loop = () => {
@@ -358,7 +357,9 @@ const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
     lerpY += (mouseY - lerpY) * 0.06;
     layers.forEach(l=>{
       const s = parseFloat(l.dataset.pSpeed || '0.2');
-      l.style.transform += ` translate(${lerpX * s * 18}px, ${lerpY * s * 14}px)`;
+      const x = lerpX * s * 18;
+      const y = lerpY * s * 14;
+      l.style.transform = `translate(-50%,-50%) translateY(${scrollOffset * s}px) translate(${x}px, ${y}px)`;
     });
     requestAnimationFrame(loop);
   };
